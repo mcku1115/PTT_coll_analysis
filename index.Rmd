@@ -6,8 +6,8 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 <br>
-古貿昌
-2021/1/7
+<CENTER>古貿昌</CENTER>
+<CENTER>2021/1/7</CENTER>
 <br>
 
 ```{r message=FALSE, results='hold', warning=FALSE}
@@ -526,4 +526,11 @@ huainian_collo_table %>%
     theme(text = element_text(family = 'Arial Unicode MS'))
 
 ```
+
+## 參考文獻
+
+Brezina, Vaclav. 2018. *Statistics in Corpus Linguistics: A Practical Guide.* Cambridge: Cambridge University Press.   
+Desagulier, Guillaume. 2018. *Corpus Linguistics and Statistics with R.* Cham, Switzerland: Springer.  
+Gries, Stefan T. 2017. *Quantitative Corpus Linguistics with R: A Practical Introduction.* Second Edition. Routledge.  
+洪漢唐&江琼玉. 2020. 小農手作： 語料庫索引與建置. HOCOR 2020.
 
