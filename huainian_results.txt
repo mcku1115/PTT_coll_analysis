@@ -1,0 +1,125 @@
+|---------------------------------------------------------------------|
+| This output is provided without any warranty on an as-is basis by   |
+| Stefan Th. Gries <http://www.linguistics.ucsb.edu/faculty/stgries/> |
+| Please cite the program as mentioned in <readme.txt>. Thanks a lot! |
+|---------------------------------------------------------------------|
+
+ Thu Jan 07 09:47:55 2021 
+
+word.freq: frequency of the word in the corpus
+obs.freq: observed frequency of the word with/in  huainian
+exp.freq: expected frequency of the word with/in huainian
+faith: percentage of how many instances of the word occur with/in huainian
+relation: relation of the word to huainian
+delta.p.constr.to.word: delta p: how much does the word/construction help guess the word?
+delta.p.constr.to.word: delta p: how much does the construction help guess the word/construction?
+coll.strength: index of collocational/collostructional strength: log-likelihood, the higher, the stronger
+
+words	word.freq	obs.freq	exp.freq	relation	faith	delta.p.constr.to.word	delta.p.word.to.constr	coll.strength
+字眼	114	3	0	attraction	0.03	0.03	0.03	37.66
+名字	466	3	0.01	attraction	0.01	0.03	0.01	29.16
+議長	513	2	0.01	attraction	0	0.02	0	17.42
+滴滴	5	1	0	attraction	0.2	0.01	0.2	16.78
+凱南	14	1	0	attraction	0.07	0.01	0.07	14.58
+哲學家	15	1	0	attraction	0.07	0.01	0.07	14.43
+券	1223	2	0.02	attraction	0	0.02	0	13.96
+同齡	22	1	0	attraction	0.05	0.01	0.05	13.64
+鍾肇政	25	1	0	attraction	0.04	0.01	0.04	13.38
+戰友	26	1	0	attraction	0.04	0.01	0.04	13.3
+帶隊	28	1	0	attraction	0.04	0.01	0.04	13.15
+那	7157	3	0.13	attraction	0	0.03	0	13
+牛奶	34	1	0	attraction	0.03	0.01	0.03	12.76
+世間	37	1	0	attraction	0.03	0.01	0.03	12.59
+戒嚴	48	1	0	attraction	0.02	0.01	0.02	12.06
+謝長廷	48	1	0	attraction	0.02	0.01	0.02	12.06
+愛人	65	1	0	attraction	0.02	0.01	0.02	11.45
+中華人民共和國	67	1	0	attraction	0.01	0.01	0.01	11.39
+戰術	70	1	0	attraction	0.01	0.01	0.01	11.3
+星	75	1	0	attraction	0.01	0.01	0.01	11.16
+首歌	91	1	0	attraction	0.01	0.01	0.01	10.77
+宇宙	100	1	0	attraction	0.01	0.01	0.01	10.58
+那段	105	1	0	attraction	0.01	0.01	0.01	10.48
+青春	121	1	0	attraction	0.01	0.01	0.01	10.2
+霸氣	169	1	0	attraction	0.01	0.01	0.01	9.53
+咖	202	1	0	attraction	0	0.01	0	9.18
+夫妻	234	1	0	attraction	0	0.01	0	8.88
+概念	272	1	0.01	attraction	0	0.01	0	8.58
+祝福	291	1	0.01	attraction	0	0.01	0	8.45
+讀書	312	1	0.01	attraction	0	0.01	0	8.31
+每年	354	1	0.01	attraction	0	0.01	0	8.06
+那時	394	1	0.01	attraction	0	0.01	0	7.84
+他	38112	4	0.71	attraction	0	0.03	0	7.32
+議長	513	1	0.01	attraction	0	0.01	0	7.32
+作者	567	1	0.01	attraction	0	0.01	0	7.12
+日子	571	1	0.01	attraction	0	0.01	0	7.11
+日子	571	1	0.01	attraction	0	0.01	0	7.11
+店	575	1	0.01	attraction	0	0.01	0	7.09
+老師	627	1	0.01	attraction	0	0.01	0	6.92
+前女友	640	1	0.01	attraction	0	0.01	0	6.88
+故事	644	1	0.01	attraction	0	0.01	0	6.87
+畢業	692	1	0.01	attraction	0	0.01	0	6.73
+馬英九	728	1	0.01	attraction	0	0.01	0	6.63
+馬	837	1	0.02	attraction	0	0.01	0	6.35
+學生	978	1	0.02	attraction	0	0.01	0	6.05
+一切	1186	1	0.02	attraction	0	0.01	0	5.67
+大學	1192	1	0.02	attraction	0	0.01	0	5.66
+券	1223	1	0.02	attraction	0	0.01	0	5.61
+時代	1506	1	0.03	attraction	0	0.01	0	5.2
+日本	1545	1	0.03	attraction	0	0.01	0	5.15
+世界	1706	1	0.03	attraction	0	0.01	0	4.96
+有些	1734	1	0.03	attraction	0	0.01	0	4.93
+八卦	2250	1	0.04	attraction	0	0.01	0	4.43
+那個	2487	1	0.05	attraction	0	0.01	0	4.23
+那個	2487	1	0.05	attraction	0	0.01	0	4.23
+感情	2667	1	0.05	attraction	0	0.01	0	4.1
+文章	2899	1	0.05	attraction	0	0.01	0	3.94
+有人	2977	1	0.06	attraction	0	0.01	0	3.89
+感覺	4656	1	0.09	attraction	0	0.01	0	3.06
+蔡	4728	1	0.09	attraction	0	0.01	0	3.03
+民進黨	5138	1	0.1	attraction	0	0.01	0	2.88
+結果	5177	1	0.1	attraction	0	0.01	0	2.87
+時間	5350	1	0.1	attraction	0	0.01	0	2.81
+時間	5350	1	0.1	attraction	0	0.01	0	2.81
+他們	6386	1	0.12	attraction	0	0.01	0	2.49
+那	7157	1	0.13	attraction	0	0.01	0	2.29
+那	7157	1	0.13	attraction	0	0.01	0	2.29
+那	7157	1	0.13	attraction	0	0.01	0	2.29
+市長	7643	1	0.14	attraction	0	0.01	0	2.18
+韓國	8197	1	0.15	attraction	0	0.01	0	2.06
+韓國	8197	1	0.15	attraction	0	0.01	0	2.06
+朋友	8894	1	0.17	attraction	0	0.01	0	1.92
+這樣	11313	1	0.21	attraction	0	0.01	0	1.53
+我們	14072	1	0.26	attraction	0	0.01	0	1.2
+自己	17629	1	0.33	attraction	0	0.01	0	0.88
+自己	17629	1	0.33	attraction	0	0.01	0	0.88
+你	22036	1	0.41	attraction	0	0.01	0	0.6
+你	22036	1	0.41	attraction	0	0.01	0	0.6
+人	23295	1	0.44	attraction	0	0.01	0	0.53
+她	30659	1	0.57	attraction	0	0	0	0.26
+他	38112	1	0.71	attraction	0	0	0	0.1
+我	95776	1	1.8	repulsion	0	-0.01	0	0.43
+我	95776	1	1.8	repulsion	0	-0.01	0	0.43
+我	95776	1	1.8	repulsion	0	-0.01	0	0.43
+我	95776	1	1.8	repulsion	0	-0.01	0	0.43
+我	95776	1	1.8	repulsion	0	-0.01	0	0.43
+我	95776	1	1.8	repulsion	0	-0.01	0	0.43
+我	95776	1	1.8	repulsion	0	-0.01	0	0.43
+我	95776	1	1.8	repulsion	0	-0.01	0	0.43
+
+In order to determine the degree of repulsion of verbs that are not attested with/inhuainian,
+the following table gives the collocational/collostructional strength for all verb frequencies
+in orders of magnitude the corpus size allows for.
+
+
+absents.words	absents.obs.freqs	absents.exp.freqs	relation	absents.delta.p.constr.to.word	absents.delta.p.word.to.constr	absents.collstrengths
+a	10	0	repulsion	0	0	0
+b	100	0	repulsion	0	0	0
+c	1000	0.02	repulsion	0	0	0.04
+d	10000	0.19	repulsion	0	0	0.38
+e	1e+05	1.87	repulsion	-0.02	0	3.78
+f	1e+06	18.74	repulsion	-0.19	0	41.51
+
+
+If your collostruction strength is based on p-values, it can be interpreted as follows:
+Coll.strength>3 => p<0.001; coll.strength>2 => p<0.01; coll.strength>1.30103 => p<0.05.
+I'd be happy if you provided me with feedback and acknowledged the use of Coll.analysis 3.2a.

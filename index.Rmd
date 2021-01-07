@@ -1,8 +1,8 @@
 ---
-title: "A mini-PTT corpus"
+title: "A Collexeme Analysis in a Mini-PTT Corpus"
 output: html_document
 ---
-```{r setup, message=FALSE, echo=TRUE, warning=FALSE, include=FALSE}
+```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 <br>
@@ -22,7 +22,7 @@ library(quanteda)
 ```
 
 
-### 爬取資料 ###
+## 爬取資料
 ```{r eval=FALSE}
 
 scrapePTT <- function(ptt_url, num_index_page) {
@@ -118,7 +118,7 @@ write_csv(PTT_df, 'PTT_GSP.csv')
 ```
 
 
-### 讀取檔案 ###
+## 讀取檔案
 ```{r message=FALSE, results='hold', warning=FALSE}
 
 HP_df <- read_csv('PTT_HP.csv') %>%
@@ -132,15 +132,15 @@ BG_df <- read_csv('PTT_BG.csv') %>%
 GSP_df <- read_csv('PTT_GSP.csv') %>%
   mutate(看板 = '八卦')
 
+PTT_df <- rbind(HP_df, BG_df, GSP_df)
+
 head(HP_df)
 head(BG_df)
 head(GSP_df)
 
 ```
 
-
-### 數據統計 ###
-
+## 數據統計
 ```{r message=FALSE, results='hold', warning=FALSE}
 
 boards <- c('政黑', '男女', '八卦')
@@ -165,11 +165,12 @@ HP_nword <- tidy_HP %>% count(word) %>% nrow()
 BG_nword <- tidy_BG %>% count(word) %>% nrow()
 GSP_nword <- tidy_GSP %>% count(word) %>% nrow()
 
-tibble::tibble(看板 = boards,
-                 篇數 = c(HP_npost, BG_npost, GSP_npost),
-                 字數 = c(HP_nchar, BG_nchar, GSP_nchar),
-                 tokens = c(HP_ntok, BG_ntok, GSP_ntok),
-                 words = c(HP_nword, BG_nword, GSP_nword))
+tibble(看板 = boards,
+         篇數 = c(HP_npost, BG_npost, GSP_npost),
+         字數 = c(HP_nchar, BG_nchar, GSP_nchar),
+         tokens = c(HP_ntok, BG_ntok, GSP_ntok),
+         words = c(HP_nword, BG_nword, GSP_nword)) %>%
+  rbind(c('合計', colSums(.[,2:5])))
 
 ```
 
@@ -187,23 +188,26 @@ count_freq <- function (x, y) {
   else {number <- 0}
 }
   
-tok_com <- tibble::tibble(動詞 = c('思念', '想念', '懷念'),
-                 政黑 = c(count_freq(HP_freq, '思念'), count_freq(HP_freq, '想念'), count_freq(HP_freq, '懷念')),
-                 男女 = c(count_freq(BG_freq, '思念'), count_freq(BG_freq, '想念'), count_freq(BG_freq, '懷念')),
-                 八卦 = c(count_freq(GSP_freq, '思念'), count_freq(GSP_freq, '想念'), count_freq(GSP_freq, '懷念')))
+tok_com <- tibble(
+  動詞 = c('思念', '想念', '懷念'),
+  政黑 = c(count_freq(HP_freq, '思念'), count_freq(HP_freq, '想念'), count_freq(HP_freq, '懷念')),
+  男女 = c(count_freq(BG_freq, '思念'), count_freq(BG_freq, '想念'), count_freq(BG_freq, '懷念')),
+  八卦 = c(count_freq(GSP_freq, '思念'), count_freq(GSP_freq, '想念'), count_freq(GSP_freq, '懷念'))
+)
 
 tok_com
 
 tok_com %>% 
   gather(看板, 出現次數, -動詞) %>%
   ggplot(aes(動詞, 出現次數, fill = 看板)) +
-  geom_bar(stat = 'identity', position = 'dodge')
+  geom_bar(stat = 'identity', position = 'dodge') +
+  scale_fill_manual(values = c('#00b81f', '#f8766d', '#00a5ff'))
 
 ```
 
 
-### 關鍵詞語境 ###
-```{r message=FALSE, results='hold', warning=FALSE}
+## 關鍵詞語境
+```{r message=FALSE, warning=FALSE}
 
 pattern <- '\\b[思想懷]念\\b'
 
@@ -214,7 +218,8 @@ corpus_HP <- corpus(HP_df,
 kwic(corpus_HP, pattern, valuetype = 'regex') %>% 
   mutate(board = '政黑', id = row_number()) %>%
   select(board, id, pre, keyword, post) %>%
-  head(10) %>% 
+  sample_n(10) %>%
+  arrange(id) %>%
   knitr::kable(align = 'c')
 
 corpus_BG <- corpus(BG_df,
@@ -224,7 +229,8 @@ corpus_BG <- corpus(BG_df,
 kwic(corpus_BG, pattern, valuetype = 'regex') %>% 
   mutate(board = '男女', id = row_number()) %>%
   select(board, id, pre, keyword, post) %>%
-  head(10) %>% 
+  sample_n(10) %>%
+  arrange(id) %>% 
   knitr::kable(align = 'c') 
 
 corpus_GSP <- corpus(GSP_df,
@@ -234,13 +240,41 @@ corpus_GSP <- corpus(GSP_df,
 kwic(corpus_GSP, pattern, valuetype = 'regex') %>% 
   mutate(board = '八卦', id = row_number()) %>%
   select(board, id, pre, keyword, post) %>%
-  head(10) %>% 
+  sample_n(10) %>%
+  arrange(id) %>% 
+  knitr::kable(align = 'c')
+
+```
+
+```{r message=FALSE, results='hold', warning=FALSE}
+
+corpus_PTT <- corpus(PTT_df, text_field = '內容')
+
+kwic(corpus_PTT, '思念') %>% 
+  mutate(id = row_number()) %>%
+  select(id, pre, keyword, post) %>%
+  sample_n(10) %>% 
+  arrange(id) %>%
+  knitr::kable(align = 'c')
+
+kwic(corpus_PTT, '想念') %>% 
+  mutate(id = row_number()) %>%
+  select(id, pre, keyword, post) %>%
+  sample_n(10) %>% 
+  arrange(id) %>%
+  knitr::kable(align = 'c')
+
+kwic(corpus_PTT, '懷念') %>% 
+  mutate(id = row_number()) %>%
+  select(id, pre, keyword, post) %>%
+  sample_n(10) %>%
+  arrange(id) %>%
   knitr::kable(align = 'c')
 
 ```
 
 
-### 直接賓語分布 ###
+## 直接賓語分布
 ```{r message=FALSE, results='hold', warning=FALSE}
 
 # initialize `jiebar`
@@ -261,13 +295,11 @@ seg_text <- function(x) {
 PTT_df <- rbind(HP_df, BG_df, GSP_df)
 
 PTT_df_tagged <- PTT_df %>%
-  mutate(id = row_number(),
-         內容_seg = map_chr(內容, seg_text),
-         內容_tag = map_chr(內容, tag_text)) %>%
-  select(id, everything())
+  mutate(內容_seg = map_chr(內容, seg_text),
+         內容_tag = map_chr(內容, tag_text))
 
-# Define regex
-pattern_tag <- '\\b[思想懷]念/[vn]\\s([^/]+/[a-z]+\\s)*?[^/]+/[nr]'
+# define regex
+pattern_tag <- '\\b[思想懷]念/[a-z]+([^/]+/[a-z]+)*?[^/]+/[nr]'
 
 # Extract patterns
 PTT_missing <- PTT_df_tagged %>%
@@ -276,7 +308,12 @@ PTT_missing <- PTT_df_tagged %>%
                 token = function(x) str_extract_all(x, pattern = pattern_tag)) %>%
   mutate(pattern = str_remove_all(construction, '/[a-z]+')) %>%
   mutate(obj = str_replace(pattern, '.+\\s([^\\s]+)$', '\\1')) %>%
-  select(id, pattern, obj)
+  select(看板, 編號, pattern, obj)
+
+PTT_missing %>%
+  sample_n(10) %>% 
+  arrange(看板, 編號) %>%
+  knitr::kable(align = 'c')
 
 missing_df_annot <- read_csv('missing_df_annot.csv')
   
@@ -308,6 +345,7 @@ missing_df_obj_info %>%
 
 ```
 
+
 ```{r message=FALSE, results='hold', warning=FALSE}
 
 missing_df_obj_info %>%
@@ -321,7 +359,7 @@ missing_df_obj_info %>%
 ```
 
 
-### Prepare for collexeme analysis ###
+## Prepare for collexeme analysis
 ```{r message=FALSE, results='hold', warning=FALSE}
 
 # word freq
@@ -333,35 +371,60 @@ PTT_df_tagged %>%
 
 # Joint frequency table
 PTT_missing %>%
+  filter(str_detect(pattern, '思念')) %>%
   count(pattern, sort = T) %>%
   mutate(w1 = str_replace(pattern, '.+\\s([^\\s]+)$', '\\1')) %>%
-  mutate(w1_freq = PTT_word$n[match(w1, PTT_word$word)]) -> PTT_missing_table
+  mutate(w1_freq = PTT_word$n[match(w1, PTT_word$word)]) -> PTT_sinian_table
+
+PTT_missing %>%
+  filter(str_detect(pattern, '想念')) %>%
+  count(pattern, sort = T) %>%
+  mutate(w1 = str_replace(pattern, '.+\\s([^\\s]+)$', '\\1')) %>%
+  mutate(w1_freq = PTT_word$n[match(w1, PTT_word$word)]) -> PTT_xiangnian_table
+
+PTT_missing %>%
+  filter(str_detect(pattern, '懷念')) %>%
+  count(pattern, sort = T) %>%
+  mutate(w1 = str_replace(pattern, '.+\\s([^\\s]+)$', '\\1')) %>%
+  mutate(w1_freq = PTT_word$n[match(w1, PTT_word$word)]) -> PTT_huainian_table
   
 # prepare for coll analysis
-PTT_missing_table %>%
+PTT_sinian_table %>%
   select(w1, w1_freq, n) %>%
-  write_tsv('missing.tsv')
+  write_tsv('sinian.tsv')
+
+PTT_xiangnian_table %>%
+  select(w1, w1_freq, n) %>%
+  write_tsv('xiangnian.tsv')
+
+PTT_huainian_table %>%
+  select(w1, w1_freq, n) %>%
+  write_tsv('huainian.tsv')
 
 ```
 
-### Run collexeme analysis ###
+## Run collexeme analysis
 ```{r eval=FALSE}
 
 # save info in a text
 sink('missing_info.txt')
 cat('Corpus Size: ', sum(PTT_word$n), '\n')
-cat('Construction Size: ', sum(PTT_missing_table$n), '\n')
+cat('Freq of sinian: ', sum(PTT_sinian_table$n), '\n')
+cat('Freq of xiangnian: ', sum(PTT_xiangnian_table$n), '\n')
+cat('Freq of huainian: ', sum(PTT_huainian_table$n), '\n')
 sink()
 
 # Create new file
-file.create('missing_results.txt')
+file.create('sinian_results.txt')
+file.create('xiangnian_results.txt')
+file.create('huainian_results.txt')
 
 source('coll.analysis.r')
 
 # analysis to perform: 1
 # name of construction: missing
-# corpus size: 846358
-# freq of constructions: 408
+# corpus size: 5335525
+# freq of constructions: 65; 95; 100
 # index of association strength: 2 (=log-likelihood)
 # sorting: 4 (=collostruction strength)
 # decimals: 2
@@ -372,63 +435,95 @@ source('coll.analysis.r')
 ```
 
 
-### Results ###
+## 結果
 ```{r message=FALSE, results='hold', warning=FALSE}
 
 # load the output txt
-results <- readLines('missing_results.txt', encoding = 'utf-8')
+sinian_results <- readLines('sinian_results.txt', encoding = 'utf-8') %>%
+  .[-c(1:17, (length(.)-17):length(.))]
+  
+xiangnian_results <- readLines('xiangnian_results.txt', encoding = 'utf-8') %>%
+  .[-c(1:17, (length(.)-17):length(.))]
 
-# subset lines 
-results <- results[-c(1:17, (length(results)-17):length(results))]
+huainian_results <- readLines('huainian_results.txt', encoding = 'utf-8') %>%
+  .[-c(1:17, (length(.)-17):length(.))]
 
 # convert into a table
-collo_table <- read_tsv(results)
+sinian_collo_table <- read_tsv(sinian_results)
+xiangnian_collo_table <- read_tsv(xiangnian_results)
+huainian_collo_table <- read_tsv(huainian_results)
 
-# auto-print
-collo_table %>%
+```
+
+
+#### Collocation of *思念* in PTT
+```{r message=FALSE, results='hold', warning=FALSE}
+
+sinian_collo_table %>%
   arrange(-coll.strength) %>%
   head(10) %>%
   knitr::kable(align = 'c')
 
-# from wide to long
-collo_table %>%
-  filter(relation == 'attraction') %>%
-  select(words, obs.freq, 
-         delta.p.constr.to.word, 
-         delta.p.word.to.constr,
-         coll.strength) %>%
-  pivot_longer(cols = c('obs.freq',
-                        'delta.p.constr.to.word', 
-                        'delta.p.word.to.constr',
-                        'coll.strength'),
-               names_to = 'metric',
-               values_to = 'strength') %>%
-  mutate(metric = factor(metric, 
-                         levels = c('obs.freq', 
-                                    'delta.p.constr.to.word',
-                                    'delta.p.word.to.constr',
-                                    'coll.strength'))) %>%
-  group_by(metric) %>%
-  top_n(10, strength) %>%
-  ungroup %>%
-  arrange(metric, desc(strength)) -> coll_table_long
+```
 
-# plot
-graphs <- list()
-for(i in levels(coll_table_long$metric)){
-  coll_table_long %>%
-    filter(metric %in% i) %>%
-    ggplot(aes(reorder(words, strength), strength, fill=strength)) +
+#### Collocation of *想念* in PTT
+```{r message=FALSE, results='hold', warning=FALSE}
+
+xiangnian_collo_table %>%
+  arrange(-coll.strength) %>%
+  head(10) %>%
+  knitr::kable(align = 'c')
+
+```
+
+#### Collocation of *懷念* in PTT
+```{r message=FALSE, results='hold', warning=FALSE}
+
+huainian_collo_table %>%
+  arrange(-coll.strength) %>%
+  head(10) %>%
+  knitr::kable(align = 'c')
+
+```
+
+
+```{r message=FALSE, results='hold', warning=FALSE}
+
+sinian_collo_table %>%
+  filter(relation == 'attraction') %>%
+  select(words, obs.freq, coll.strength) %>%
+  top_n(10, coll.strength) %>%
+  ggplot(aes(reorder(words, coll.strength), coll.strength, fill = coll.strength)) +
     geom_col(show.legend = F) +
     coord_flip() +
-    labs(x = 'Collexemes', 
-         y = 'Strength', 
-         title = i)+
-    theme(text = element_text(family = 'Arial Unicode MS')) -> graphs[[i]]
-}
+    labs(x = 'Keywords', 
+         y = 'Strength (G2)', 
+         title = 'Collocation of 思念 in PTT')+
+    theme(text = element_text(family = 'Arial Unicode MS'))
 
-require(ggpubr)
-ggpubr::ggarrange(plotlist = graphs)
+xiangnian_collo_table %>%
+  filter(relation == 'attraction') %>%
+  select(words, obs.freq, coll.strength) %>%
+  top_n(10, coll.strength) %>%
+  ggplot(aes(reorder(words, coll.strength), coll.strength, fill = coll.strength)) +
+    geom_col(show.legend = F) +
+    coord_flip() +
+    labs(x = 'Keywords', 
+         y = 'Strength (G2)', 
+         title = 'Collocation of 想念 in PTT')+
+    theme(text = element_text(family = 'Arial Unicode MS'))
+
+huainian_collo_table %>%
+  filter(relation == 'attraction') %>%
+  select(words, obs.freq, coll.strength) %>%
+  top_n(10, coll.strength) %>%
+  ggplot(aes(reorder(words, coll.strength), coll.strength, fill = coll.strength)) +
+    geom_col(show.legend = F) +
+    coord_flip() +
+    labs(x = 'Keywords', 
+         y = 'Strength (G2)', 
+         title = 'Collocation of 懷念 in PTT')+
+    theme(text = element_text(family = 'Arial Unicode MS'))
 
 ```
 

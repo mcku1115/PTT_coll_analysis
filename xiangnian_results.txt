@@ -1,0 +1,91 @@
+|---------------------------------------------------------------------|
+| This output is provided without any warranty on an as-is basis by   |
+| Stefan Th. Gries <http://www.linguistics.ucsb.edu/faculty/stgries/> |
+| Please cite the program as mentioned in <readme.txt>. Thanks a lot! |
+|---------------------------------------------------------------------|
+
+ Thu Jan 07 09:47:04 2021 
+
+word.freq: frequency of the word in the corpus
+obs.freq: observed frequency of the word with/in  xiangnian
+exp.freq: expected frequency of the word with/in xiangnian
+faith: percentage of how many instances of the word occur with/in xiangnian
+relation: relation of the word to xiangnian
+delta.p.constr.to.word: delta p: how much does the word/construction help guess the word?
+delta.p.constr.to.word: delta p: how much does the construction help guess the word/construction?
+coll.strength: index of collocational/collostructional strength: log-likelihood, the higher, the stronger
+
+words	word.freq	obs.freq	exp.freq	relation	faith	delta.p.constr.to.word	delta.p.word.to.constr	coll.strength
+他	38112	12	0.68	attraction	0	0.12	0	47.72
+你	22036	9	0.39	attraction	0	0.09	0	39.99
+她	30659	9	0.55	attraction	0	0.09	0	34.32
+著	4586	3	0.08	attraction	0	0.03	0	15.88
+對方	5385	3	0.1	attraction	0	0.03	0	14.94
+神力	18	1	0	attraction	0.06	0.01	0.06	14.16
+腳步	70	1	0	attraction	0.01	0.01	0.01	11.4
+那個	2487	2	0.04	attraction	0	0.02	0	11.37
+風景	73	1	0	attraction	0.01	0.01	0.01	11.32
+騙人	84	1	0	attraction	0.01	0.01	0.01	11.04
+酒精	98	1	0	attraction	0.01	0.01	0.01	10.73
+妻子	173	1	0	attraction	0.01	0.01	0.01	9.59
+我	95776	7	1.71	attraction	0	0.06	0	9.49
+時光	182	1	0	attraction	0.01	0.01	0.01	9.49
+太陽	241	1	0	attraction	0	0.01	0	8.93
+負面	281	1	0.01	attraction	0	0.01	0	8.62
+某個	308	1	0.01	attraction	0	0.01	0	8.44
+狗	335	1	0.01	attraction	0	0.01	0	8.27
+兒子	359	1	0.01	attraction	0	0.01	0	8.13
+有時	594	1	0.01	attraction	0	0.01	0	7.13
+人	23295	3	0.41	attraction	0	0.03	0	6.77
+傳	1009	1	0.02	attraction	0	0.01	0	6.09
+我會	1117	1	0.02	attraction	0	0.01	0	5.89
+一切	1186	1	0.02	attraction	0	0.01	0	5.77
+人家	1202	1	0.02	attraction	0	0.01	0	5.74
+聯絡	1216	1	0.02	attraction	0	0.01	0	5.72
+心情	1384	1	0.02	attraction	0	0.01	0	5.47
+那些	1655	1	0.03	attraction	0	0.01	0	5.12
+那些	1655	1	0.03	attraction	0	0.01	0	5.12
+有些	1734	1	0.03	attraction	0	0.01	0	5.03
+東西	2168	1	0.04	attraction	0	0.01	0	4.6
+高雄市	2527	1	0.04	attraction	0	0.01	0	4.3
+這些	4238	1	0.08	attraction	0	0.01	0	3.33
+著	4586	1	0.08	attraction	0	0.01	0	3.18
+著	4586	1	0.08	attraction	0	0.01	0	3.18
+著	4586	1	0.08	attraction	0	0.01	0	3.18
+時候	5951	1	0.11	attraction	0	0.01	0	2.71
+時候	5951	1	0.11	attraction	0	0.01	0	2.71
+時候	5951	1	0.11	attraction	0	0.01	0	2.71
+這個	7012	1	0.12	attraction	0	0.01	0	2.42
+市長	7643	1	0.14	attraction	0	0.01	0	2.27
+大家	10195	1	0.18	attraction	0	0.01	0	1.78
+我們	14072	1	0.25	attraction	0	0.01	0	1.28
+我們	14072	1	0.25	attraction	0	0.01	0	1.28
+我們	14072	1	0.25	attraction	0	0.01	0	1.28
+什麼	14154	1	0.25	attraction	0	0.01	0	1.27
+你	22036	1	0.39	attraction	0	0.01	0	0.66
+你	22036	1	0.39	attraction	0	0.01	0	0.66
+人	23295	1	0.41	attraction	0	0.01	0	0.59
+她	30659	1	0.55	attraction	0	0	0	0.3
+我	95776	1	1.71	repulsion	0	-0.01	0	0.35
+我	95776	1	1.71	repulsion	0	-0.01	0	0.35
+我	95776	1	1.71	repulsion	0	-0.01	0	0.35
+我	95776	1	1.71	repulsion	0	-0.01	0	0.35
+我	95776	1	1.71	repulsion	0	-0.01	0	0.35
+
+In order to determine the degree of repulsion of verbs that are not attested with/inxiangnian,
+the following table gives the collocational/collostructional strength for all verb frequencies
+in orders of magnitude the corpus size allows for.
+
+
+absents.words	absents.obs.freqs	absents.exp.freqs	relation	absents.delta.p.constr.to.word	absents.delta.p.word.to.constr	absents.collstrengths
+a	10	0	repulsion	0	0	0
+b	100	0	repulsion	0	0	0
+c	1000	0.02	repulsion	0	0	0.04
+d	10000	0.18	repulsion	0	0	0.36
+e	1e+05	1.78	repulsion	-0.02	0	3.59
+f	1e+06	17.81	repulsion	-0.19	0	39.43
+
+
+If your collostruction strength is based on p-values, it can be interpreted as follows:
+Coll.strength>3 => p<0.001; coll.strength>2 => p<0.01; coll.strength>1.30103 => p<0.05.
+I'd be happy if you provided me with feedback and acknowledged the use of Coll.analysis 3.2a.

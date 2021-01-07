@@ -1,0 +1,95 @@
+|---------------------------------------------------------------------|
+| This output is provided without any warranty on an as-is basis by   |
+| Stefan Th. Gries <http://www.linguistics.ucsb.edu/faculty/stgries/> |
+| Please cite the program as mentioned in <readme.txt>. Thanks a lot! |
+|---------------------------------------------------------------------|
+
+ Thu Jan 07 09:45:43 2021 
+
+word.freq: frequency of the word in the corpus
+obs.freq: observed frequency of the word with/in  sinian
+exp.freq: expected frequency of the word with/in sinian
+faith: percentage of how many instances of the word occur with/in sinian
+relation: relation of the word to sinian
+delta.p.constr.to.word: delta p: how much does the word/construction help guess the word?
+delta.p.constr.to.word: delta p: how much does the construction help guess the word/construction?
+coll.strength: index of collocational/collostructional strength: log-likelihood, the higher, the stronger
+
+words	word.freq	obs.freq	exp.freq	relation	faith	delta.p.constr.to.word	delta.p.word.to.constr	coll.strength
+祖國	93	2	0	attraction	0.02	0.03	0.02	26.01
+醇酒	1	1	0	attraction	1	0.02	1	22.65
+滿桌	1	1	0	attraction	1	0.02	1	22.65
+陳年老酒	2	1	0	attraction	0.5	0.02	0.5	19.87
+著	4586	3	0.06	attraction	0	0.05	0	18.15
+太苦	8	1	0	attraction	0.12	0.02	0.12	16.62
+迴圈	20	1	0	attraction	0.05	0.02	0.05	14.71
+上週末	21	1	0	attraction	0.05	0.02	0.05	14.61
+酈	45	1	0	attraction	0.02	0.02	0.02	13.06
+天亮	45	1	0	attraction	0.02	0.02	0.02	13.06
+家鄉	62	1	0	attraction	0.02	0.02	0.02	12.41
+思念	70	1	0	attraction	0.01	0.02	0.01	12.17
+思念	70	1	0	attraction	0.01	0.02	0.01	12.17
+孬	84	1	0	attraction	0.01	0.02	0.01	11.8
+哪天	113	1	0	attraction	0.01	0.02	0.01	11.2
+實在太	132	1	0	attraction	0.01	0.02	0.01	10.89
+心靈	143	1	0	attraction	0.01	0.02	0.01	10.73
+多麼	179	1	0	attraction	0.01	0.02	0.01	10.28
+全程	185	1	0	attraction	0.01	0.02	0.01	10.22
+對方	5385	2	0.07	attraction	0	0.03	0	9.86
+安全感	325	1	0	attraction	0	0.02	0	9.09
+頻率	341	1	0	attraction	0	0.02	0	8.99
+陣子	386	1	0	attraction	0	0.02	0	8.75
+空間	713	1	0.01	attraction	0	0.02	0	7.53
+情緒	1106	1	0.01	attraction	0	0.02	0	6.66
+情緒	1106	1	0.01	attraction	0	0.02	0	6.66
+人家	1202	1	0.01	attraction	0	0.02	0	6.49
+意見	1296	1	0.02	attraction	0	0.02	0	6.34
+日本	1545	1	0.02	attraction	0	0.02	0	6
+原本	1569	1	0.02	attraction	0	0.02	0	5.97
+如何	2189	1	0.03	attraction	0	0.01	0	5.32
+聊天	2671	1	0.03	attraction	0	0.01	0	4.93
+感情	2667	1	0.03	attraction	0	0.01	0	4.93
+男	2736	1	0.03	attraction	0	0.01	0	4.88
+無法	2833	1	0.03	attraction	0	0.01	0	4.82
+你們	3265	1	0.04	attraction	0	0.01	0	4.54
+該	3922	1	0.05	attraction	0	0.01	0	4.19
+事	4342	1	0.05	attraction	0	0.01	0	4
+感覺	4656	1	0.06	attraction	0	0.01	0	3.87
+男友	5200	1	0.06	attraction	0	0.01	0	3.66
+時間	5350	1	0.07	attraction	0	0.01	0	3.61
+她	30659	2	0.37	attraction	0	0.03	0	3.5
+時候	5951	1	0.07	attraction	0	0.01	0	3.41
+時候	5951	1	0.07	attraction	0	0.01	0	3.41
+我們	14072	1	0.17	attraction	0	0.01	0	1.88
+我們	14072	1	0.17	attraction	0	0.01	0	1.88
+什麼	14154	1	0.17	attraction	0	0.01	0	1.87
+你	22036	1	0.27	attraction	0	0.01	0	1.18
+你	22036	1	0.27	attraction	0	0.01	0	1.18
+你	22036	1	0.27	attraction	0	0.01	0	1.18
+人	23295	1	0.28	attraction	0	0.01	0	1.09
+人	23295	1	0.28	attraction	0	0.01	0	1.09
+人	23295	1	0.28	attraction	0	0.01	0	1.09
+她	30659	1	0.37	attraction	0	0.01	0	0.72
+她	30659	1	0.37	attraction	0	0.01	0	0.72
+我	95776	2	1.17	attraction	0	0.01	0	0.5
+他	38112	1	0.46	attraction	0	0.01	0	0.47
+我	95776	1	1.17	repulsion	0	0	0	0.03
+我	95776	1	1.17	repulsion	0	0	0	0.03
+
+In order to determine the degree of repulsion of verbs that are not attested with/insinian,
+the following table gives the collocational/collostructional strength for all verb frequencies
+in orders of magnitude the corpus size allows for.
+
+
+absents.words	absents.obs.freqs	absents.exp.freqs	relation	absents.delta.p.constr.to.word	absents.delta.p.word.to.constr	absents.collstrengths
+a	10	0	repulsion	0	0	0
+b	100	0	repulsion	0	0	0
+c	1000	0.01	repulsion	0	0	0.02
+d	10000	0.12	repulsion	0	0	0.24
+e	1e+05	1.22	repulsion	-0.02	0	2.46
+f	1e+06	12.18	repulsion	-0.19	0	26.98
+
+
+If your collostruction strength is based on p-values, it can be interpreted as follows:
+Coll.strength>3 => p<0.001; coll.strength>2 => p<0.01; coll.strength>1.30103 => p<0.05.
+I'd be happy if you provided me with feedback and acknowledged the use of Coll.analysis 3.2a.
